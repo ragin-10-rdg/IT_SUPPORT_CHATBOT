@@ -1,0 +1,27 @@
+{
+  "name": "it-support-chatbot",
+  "version": "1.0.0",
+  "description": "Full-stack IT Support Chatbot — free AI APIs (Gemini + Groq)",
+  "scripts": {
+    "install:all": "npm install && cd client && npm install",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/index.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.15.0",
+    "groq-sdk": "^0.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0",
+    "socket.io": "^4.7.5",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.3"
+  }
+}
