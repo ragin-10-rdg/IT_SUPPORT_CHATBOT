@@ -1,7 +1,6 @@
 # IT Support Chatbot — Full Stack (Free AI APIs)
 
-A production-ready IT support chatbot using **Node.js**, **React**, **Socket.io**, **MongoDB**, and **free AI APIs** (Google Gemini or Groq).
-
+A full-stack IT support chatbot built with **React**, **Node.js**, **Socket.io**, and **MongoDB**. Features a 3-tier resolution system: exact answers from a 62-entry knowledge base, AI-powered advanced troubleshooting via free **Groq/Gemini API**, and automatic IT team escalation. Supports **English**, **Nepali**, and **Nepanglish** (mixed Nepali-English) queries — users can describe their issue in any of the three and the bot understands and responds accordingly. Real-time messaging with **WebSockets**, conversation history stored in **MongoDB**, and a dark UI with live session stats.
 ---
 
 ## Architecture
