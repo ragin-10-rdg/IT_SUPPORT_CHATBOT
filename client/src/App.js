@@ -16,18 +16,31 @@ const globalCSS = `
   @keyframes tdot   { 0%,80%,100% { opacity:0.2; transform:scale(0.8); } 40% { opacity:1; transform:scale(1); } }
 `;
 
+function ImeLogo() {
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:12 }}>
+      <div style={{ width:34, height:34, borderRadius:10, background:'#db121d', display:'flex', alignItems:'center',
+        justifyContent:'center', color:'#ffffff', fontSize:12, fontWeight:700, letterSpacing:0.5, textTransform:'uppercase' }}>
+        IME
+      </div>
+      <div>
+        <div style={{ fontSize:15, fontWeight:700, letterSpacing:-0.2, color:'#e8eaf0' }}>IME group</div>
+        <div style={{ fontSize:11, color:'#f4f4f4', opacity:0.85 }}>pioneering spirit</div>
+      </div>
+    </div>
+  );
+}
+
 function TopBar({ admin }) {
   return (
     <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between',
       padding:'0 28px', height:60, background:'#13161d',
       borderBottom:'1px solid rgba(255,255,255,0.07)', flexShrink:0 }}>
       <div style={{ display:'flex', alignItems:'center', gap:12 }}>
-        <div style={{ width:34, height:34, borderRadius:'50%', background:'rgba(79,142,247,0.12)',
-          border:'1px solid rgba(79,142,247,0.28)', display:'flex', alignItems:'center',
-          justifyContent:'center', fontSize:16 }}>{admin ? '🛠️' : '🖥️'}</div>
+        <ImeLogo />
         <div>
-          <div style={{ fontSize:15, fontWeight:600, letterSpacing:-0.2, color:'#e8eaf0' }}>{admin ? 'IT Escalation Dashboard' : 'IT Support Assistant'}</div>
-          <div style={{ fontSize:12, color:'#7b8099' }}>{admin ? 'Admin-only escalation queue' : '62 queries · Node.js + React + Socket.io + MongoDB + Claude AI'}</div>
+          <div style={{ fontSize:15, fontWeight:600, letterSpacing:-0.2, color:'#e8eaf0' }}>{admin ? 'IT Escalation Dashboard' : 'IME Group IT Support'}</div>
+          <div style={{ fontSize:12, color:'#7b8099' }}>{admin ? 'Admin-only escalation queue' : 'Chatbot for IME Group IT support'}</div>
         </div>
       </div>
       <div style={{ display:'flex', alignItems:'center', gap:8 }}>

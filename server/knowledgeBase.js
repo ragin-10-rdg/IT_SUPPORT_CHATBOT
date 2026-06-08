@@ -316,6 +316,7 @@ const NEPANG_LISH = [
   ['email khuldaina', 'email not opening'],
   ['laptop tattiraxa', 'laptop is overheating'],
   ['laptop heat huncha', 'laptop is overheating'],
+  ['mero laptop slow bhayo', 'system is running very slowly'],
   ['laptop ekdami slow chaliraxa', 'system is running very slowly'],
   ['system lastai slow xa', 'system is running very slowly'],
   ['mouse chalena', 'mouse not working'],

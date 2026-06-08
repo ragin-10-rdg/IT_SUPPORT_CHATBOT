@@ -60,9 +60,36 @@ export function SocketProvider({ children }) {
 
   const sendMessage = (text) => {
     if (!text.trim() || !socketRef.current) return;
-    const userMsg = { role: 'user', content: text, source: 'user', _id: uuidv4(), timestamp: new Date() };
+    const clean = text.trim();
+
+    // Detect phrases that indicate the user confirmed the problem is solved.
+    // Include Nepali confirmations and common English variants like
+    // "it's working", "its working", "thank you", "thanks", "solved", "fixed".
+    const solvedRe = /\b(kaam garyo|bhayo|chalyo|its working|it's working|it is working|thank you|thanks|solved|fixed|working now)\b/i;
+    const userMsg = { role: 'user', content: clean, source: 'user', _id: uuidv4(), timestamp: new Date() };
+    // If the user indicates the issue is solved, append the user message and
+    // a single thank-you system reply locally and avoid the normal
+    // troubleshooting flow on the server.
+    if (solvedRe.test(clean)) {
+      setMessages(prev => [...prev, userMsg]);
+      const thanks = {
+        role: 'bot',
+        content: "Glad to hear it's working — kaam garyo! Thank you for contacting IT Support. We're always here to help if you need anything else.",
+        source: 'system',
+        _id: uuidv4(),
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, thanks]);
+      // Emit a lightweight solved event so the server can log if it wants to.
+      socketRef.current.emit('user_solved', { sessionId, text: clean });
+      // Optionally update local stage to prevent further escalation UI.
+      setStage('fresh');
+      return;
+    }
+
+    // Normal flow: send message to server to trigger KB/AI handling
     setMessages(prev => [...prev, userMsg]);
-    socketRef.current.emit('user_message', { sessionId, text });
+    socketRef.current.emit('user_message', { sessionId, text: clean });
   };
 
   const clearSession = () => {
